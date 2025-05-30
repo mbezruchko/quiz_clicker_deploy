@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: https://github.com/mbezruchko/quiz_clicker_api.git
+    container_name: quiz_clicker_api
+    restart: always
+    ports:
+      - "8000:8000"  # backend доступен извне (для тестов, не обязательно в проде)
+
+  frontend:
+    build:
+      context: https://github.com/mbezruchko/quiz_clicker_ui.git
+    container_name: quiz_clicker_ui
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
